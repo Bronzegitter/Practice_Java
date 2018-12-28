@@ -7,6 +7,9 @@
 	content = "text/html; charset = UTF-8"/>
 </head>
 <body>
-	<th>hello world</th>
+	<h1>Hello page</h1>
+	<p th:text = "${#dates.format(new java.util.Date(),'yyyy/MM/dd HH:mm')}"></p>
+	<p th:text = "${#numbers.formatInteger(1234,7)}"></p>
+	<p th:text = "${#strings.toUpperCase('welcome to Springs.')}"></p>
 </body>
 </html>
