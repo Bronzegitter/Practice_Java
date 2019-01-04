@@ -8,14 +8,15 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class HelloController {
 
-	@RequestMapping("/{id}")
-	public ModelAndView index(@PathVariable int id, ModelAndView mav) {
+	@RequestMapping("/{month}")
+	public ModelAndView index(@PathVariable int month, ModelAndView mav) {
 
 		mav.setViewName("index");
-		mav.addObject("id", id);
-		mav.addObject("check", id >= 0);
-		mav.addObject("trueVal", "POSITIVE");
-		mav.addObject("falseVal", "NEGATEIVE.......");
+		int m = Math.abs(month) % 12;
+		//m=12の場合、余り０なので、12に変換する
+		m = m == 0 ? 12 : m;
+		mav.addObject("month", m);
+		mav.addObject("check", Math.floor(m / 3));
 		return mav;
 	}
 }
