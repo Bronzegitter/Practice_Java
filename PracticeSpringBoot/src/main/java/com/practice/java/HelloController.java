@@ -1,23 +1,21 @@
 package com.practice.java;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.practice.java.dto.ControllerDto;
-
-
-
 @RestController
 public class HelloController {
 
-	@RequestMapping("/")
-	public ModelAndView index(ModelAndView mav) {
+	@RequestMapping("/{id}")
+	public ModelAndView index(@PathVariable int id, ModelAndView mav) {
 
 		mav.setViewName("index");
-		mav.addObject("msg", "current data.");
-		ControllerDto obj = new ControllerDto(123, "hanako", "hanako@flower");
-		mav.addObject("object",obj);
+		mav.addObject("id", id);
+		mav.addObject("check", id >= 0);
+		mav.addObject("trueVal", "POSITIVE");
+		mav.addObject("falseVal", "NEGATEIVE.......");
 		return mav;
 	}
 }
