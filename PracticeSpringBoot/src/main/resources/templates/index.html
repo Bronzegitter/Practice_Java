@@ -7,19 +7,19 @@
 	<style>
 	h1 { font-size:18pt; font-weight:bold; color:gray; }
 	body { font-size:13pt; color:gray; margin:5px 25px; }
-	tr { margin:5px; }
-	th { padding:5px; color:white; background:darkgray; }
-	td { padding:5px; color:black; background:#f0f0f0; }
 	</style>
-</head>
+	<script th:inline = "javascript">
+		function action(){
+			var val = document.getElementById("text1").value;
+			var res = parseInt(val * ((100 + /*[[${tax}]]*/)/100));
+			document.getElementById("msg").innerHTML = "include tax : " + res;
+		}
+	</script>
+	</head>
 <body>
 	<h1 th:text="#{content.title}">Helo page</h1>
-	<p th:text = "|expression[ ${check}]|"></p>
-	<table th:object = "${data.get(__${check}__)}">
-		<tr>
-			<tr><th>NMAE</th><td th:text="*{id}"></td></tr>
-			<tr><th>MAIL</th><td th:text="*{name}"></td></tr>
-			<tr><th>TEL</th><td th:text="*{value}"></td></tr>
-	</table>
+	<p id = "msg"></p>
+	<input type = "text" id = "text1"/>
+	<button onclick = "action()">click</button>
 </body>
 </html>
